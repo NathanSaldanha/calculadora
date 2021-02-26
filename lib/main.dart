@@ -12,9 +12,37 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
+//Criando widget customizado
+class InformacoesTexto extends StatelessWidget {
+
+  InformacoesTexto({this.valor,this.tamanho,this.color});
+
+  String valor;
+  double tamanho;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      '$valor',
+      textAlign: TextAlign.center,
+      style: TextStyle(color: color, fontSize: tamanho),
+    );
+  }
+}
+
+//Reaproveitando completamente o comportamento da classe InformacoesTexto
+class TextoFixo extends InformacoesTexto{
+
+  TextoFixo(String s)
+      : super (
+      valor: "$s",
+      tamanho: 20.0,
+      color: Colors.white,
+  );
+}
 
 class _HomeState extends State<Home> {
-
   // Calculadora
   String numUmController = "";
   String numDoisController = "";
@@ -92,9 +120,7 @@ class _HomeState extends State<Home> {
           centerTitle: true,
           backgroundColor: Colors.blueAccent,
         ),
-
         backgroundColor: Colors.white,
-
         body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(10.0, 50.0, 10.0, 0.0),
           child: Column(
@@ -111,37 +137,25 @@ class _HomeState extends State<Home> {
                     onPressed:(){
                       _inserirValor('0');
                     },
-                    child:Text(
-                      '0',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "0",tamanho: 35,color: Colors.redAccent,),
                   ),
                   FlatButton(
                   onPressed:(){
                     _inserirValor('1');
                   },
-                    child:Text(
-                      '1',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "1",tamanho: 30,color: Colors.black),
                   ),
                   FlatButton(
                     onPressed:(){
                       _inserirValor('2');
                     },
-                    child:Text(
-                      '2',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "2",tamanho: 30,color: Colors.black),
                   ),
                   FlatButton(
                     onPressed:(){
                       _inserirValor('3');
                     },
-                    child:Text(
-                      '3',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "3",tamanho: 30,color: Colors.black),
                   ),
                 ],
               ),
@@ -152,37 +166,25 @@ class _HomeState extends State<Home> {
                     onPressed:(){
                       _inserirValor('4');
                     },
-                    child:Text(
-                      '4',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "4",tamanho: 30,color: Colors.black),
                   ),
                   FlatButton(
                     onPressed:(){
                       _inserirValor('5');
                     },
-                    child:Text(
-                      '5',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "5",tamanho: 30,color: Colors.black),
                   ),
                   FlatButton(
                     onPressed:(){
                       _inserirValor('6');
                     },
-                    child:Text(
-                      '6',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "6",tamanho: 30,color: Colors.black),
                   ),
                   FlatButton(
                     onPressed:(){
                       _inserirValor('7');
                     },
-                    child:Text(
-                      '7',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "7",tamanho: 30,color: Colors.black),
                   ),
                 ],
               ),
@@ -193,19 +195,13 @@ class _HomeState extends State<Home> {
                     onPressed:(){
                       _inserirValor('8');
                     },
-                    child:Text(
-                      '8',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "8",tamanho: 30,color: Colors.black),
                   ),
                   FlatButton(
                     onPressed:(){
                       _inserirValor('9');
                     },
-                    child:Text(
-                      '9',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
+                    child:InformacoesTexto(valor: "9",tamanho: 35,color: Colors.redAccent),
                   ),
                 ],
               ),
@@ -213,19 +209,11 @@ class _HomeState extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-
                   RaisedButton(
                     onPressed: () {
                         _inserirOperacao(1);
                     },
-
-                    child: Text(
-                      "+",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
+                    child: TextoFixo("+"),
                     color: Colors.lightBlueAccent,
                   ),
                   SizedBox(width: 3,),
@@ -234,14 +222,7 @@ class _HomeState extends State<Home> {
                         _inserirOperacao(2);
 
                     },
-
-                    child: Text(
-                      "-",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
+                    child: TextoFixo("-"),
                     color: Colors.lightBlueAccent,
                   ),
                   SizedBox(width: 3,),
@@ -249,14 +230,7 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                         _inserirOperacao(3);
                     },
-
-                    child: Text(
-                      "*",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
+                    child: TextoFixo("*"),
                     color: Colors.lightBlueAccent,
                   ),
                   SizedBox(width: 3,),
@@ -264,14 +238,7 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                         _inserirOperacao(4);
                     },
-
-                    child: Text(
-                      "/",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
+                    child: TextoFixo("/"),
                     color: Colors.lightBlueAccent,
                   ),
                 ],
@@ -280,13 +247,7 @@ class _HomeState extends State<Home> {
                 children: [
                   RaisedButton(
                     onPressed: _limpaCampos,
-                    child: Text(
-                      "Clear",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
+                    child: TextoFixo("Clear"),
                     color: Colors.lightBlueAccent,
                   ),
                   SizedBox(width: 3,),
@@ -294,27 +255,12 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       calcular();
                     },
-
-                    child: Text(
-                      "=",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
+                    child: TextoFixo("="),
                     color: Colors.lightBlueAccent,
                   ),
                 ],
               ),
-
-              Text(
-                _resultadoCalculadora,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0
-                ),
-              ),
+              InformacoesTexto(valor: "$_resultadoCalculadora",tamanho: 20.0,color: Colors.black),
             ],
           ),
         )
